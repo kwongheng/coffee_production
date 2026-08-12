@@ -1,14 +1,12 @@
-# ETL template
+# Coffee Production
 
-I created this template to make it easier for me start any data engineering project
-If you find this useful, you can copy it for your own project
+This is a JDE10 interim project to flex ETL muscles for the programme trainees
 
-## Structure
+## Structure (to be updated)
 
-Below is the basic folder structure, you may or may not need everyfile. I would suggest to use .env to
-keep sensitive information like secrets and even the URL to your database, even if you are a beginner; 
-it is a good security practise. ".gitkeep" are just placeholder files to ensure that empty folders are
-cloned, if not git will ignore them and template structure breaks.
+- data folder is used for downloading and storing extracted data, the data is not kept in the repo since it can be easily generated
+- main.py will be the main script that calls the ETL scripts
+
 
 ``` text
 │   .env
@@ -41,4 +39,9 @@ cloned, if not git will ignore them and template structure breaks.
 		test_transform_data.py
 		test_load_data.py
 ```
+
+## Branches
+
+- etl_scripts: to develop ETL related scripts
+
 
