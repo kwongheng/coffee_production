@@ -1,0 +1,57 @@
+version: "1.0"
+
+# Kaggle Datasets configurations
+kaggle_sources:
+  coffee_production:
+    dataset_path: 'michals22/coffee-dataset'
+    file_name: 'Coffee_production.csv'
+    transforms:
+      - clean_columns
+      - clean_country_codes
+      - join_country_codes
+    table_name: 'coffee_production'
+  coffee_domestic_consumption:
+    dataset_path: 'michals22/coffee-dataset'
+    file_name: 'Coffee_domestic_consumption.csv'
+    transforms:
+      - clean_columns
+      - clean_country_codes
+      - join_country_codes
+    table_name: 'coffee_domestic_consumption'
+  coffee_export:
+    dataset_path: 'michals22/coffee-dataset'
+    file_name: 'Coffee_export.csv'
+    transforms:
+      - clean_columns
+      - clean_country_codes
+      - join_country_codes
+    table_name: 'coffee_export'
+  coffee_import:
+    dataset_path: 'michals22/coffee-dataset'
+    file_name: 'Coffee_import.csv'
+    transforms:
+      - clean_columns
+      - clean_country_codes
+      - join_country_codes
+    table_name: 'coffee_import'
+  coffee_importers_consumption:
+    dataset_path: 'michals22/coffee-dataset'
+    file_name: 'Coffee_importers_consumption.csv'
+    transforms:
+      - clean_columns
+      - clean_country_codes
+      - join_country_codes
+    table_name: 'coffee_importers_consumption'
+  country_codes:
+    dataset_path: 'juanumusic/countries-iso-codes'
+    file_name: 'wikipedia-iso-country-codes.csv'
+    new_file_name: 'country_codes.csv'
+
+url_sources:
+  global_co2:
+    url_path: 'https://ourworldindata.org/grapher/co2-long-term-concentration.csv?v=1&csvType=filtered&useColumnShortNames=true'
+    storage_options: {'User-Agent': 'Our World In Data data fetch/1.0'}
+    file_name: 'global_co2.csv'
+    transforms:
+      - clean_columns
+    table_name: 'global_co2'
