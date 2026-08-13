@@ -1,14 +1,5 @@
-from pathlib import Path
-
 import pandas as pd
-
-# Project root = one level up from this file's directory (src/ -> project/)
-# avoid using relative paths like ../data/raw/
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-
-# we are using pathlib object not strings
-DEFAULT_RAW_DIR = PROJECT_ROOT / "data" / "raw"
-DEFAULT_PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+from src.paths import RAW_DIR, PROCESSED_DIR
 
 def clean_columns(df, file_name):
     """
@@ -49,7 +40,7 @@ def clean_country_codes(df, file_name):
 
     return df
 
-def join_country_codes(df, file_name, raw_dir=DEFAULT_RAW_DIR, **kwargs):
+def join_country_codes(df, file_name, raw_dir=RAW_DIR, **kwargs):
     '''
     Joins country codes to coffee data
     '''
@@ -96,8 +87,8 @@ def apply_transforms(df, file_name, transform_names):
         df = func(df, file_name)
     return df
 
-def transform_file(file_name, transform_names, raw_dir= DEFAULT_RAW_DIR,
-                    processed_dir = DEFAULT_PROCESSED_DIR):
+def transform_file(file_name, transform_names, raw_dir= RAW_DIR,
+                    processed_dir = PROCESSED_DIR):
     """loop all required transforms, apply transforms and finally saved to processed folder"""
     try:
         df = pd.read_csv(raw_dir / file_name)
