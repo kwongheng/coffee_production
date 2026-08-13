@@ -5,13 +5,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 from dotenv import load_dotenv
-
-# Project root = one level up from this file's directory (src/ -> project/)
-# avoid using relative paths like ../data/processed/
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-
-# we are using pathlib object not strings
-DEFAULT_PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+from src.paths import PROCESSED_DIR
 
 load_dotenv()
 
@@ -43,7 +37,7 @@ def get_engine() -> Engine:
     return create_engine(DATABASE_URL)
 
 
-def load_file_to_postgres(file_name, table_name, engine, processed_dir=DEFAULT_PROCESSED_DIR,
+def load_file_to_postgres(file_name, table_name, engine, processed_dir=PROCESSED_DIR,
                            if_exists="replace"):
     """
     Read a processed CSV and load it into a Postgres table.
