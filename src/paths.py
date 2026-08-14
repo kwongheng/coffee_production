@@ -10,3 +10,8 @@ PROCESSED_DIR = DATA_DIR / "processed"
 # ensure they exist so downstream code doesn't need to check
 RAW_DIR.mkdir(parents=True, exist_ok=True)
 PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+
+
+# does nothing if called directly
+if __name__ == "__main__":
+    pass
