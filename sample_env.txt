@@ -1,0 +1,13 @@
+#this is a sample .env file, make a copy locally and rename it to .env
+
+# This is for online database like neon, when this is commented, main will pick local db
+# DATABASE_URL=neondb_owner:xxxxxxxxx@hostname/neondb?sslmode=require
+
+# set your password and db name for your local psql setup
+# I have set the default db_name,
+# so you can just create a new database of the same name in psql
+DB_USER=postgres
+DB_PASSWORD=<your password>
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=coffee_db
