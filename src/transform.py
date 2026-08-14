@@ -14,13 +14,12 @@ def clean_columns(df, file_name):
         c = col.strip()
         # important to check that we are dealing with nnnn/nn format
         if "/" in c and c[0].isdigit():
-            c = c.split('/')[0][:2] + c.split('/')[1]
+            c = c.split('/')[0][:4]
         else:
             c = c.strip().lower().replace(" ", "_")
         new_cols[col] = c
-    df = df.rename(columns=new_cols)
 
-    return df
+    return df.rename(columns=new_cols)
 
 def clean_country_codes(df, file_name):
     '''
@@ -64,13 +63,13 @@ def join_country_codes(df, file_name, raw_dir=RAW_DIR, **kwargs):
 
     # this will move country_code to index 0, if not ends up in last index
     cols = ['country_code'] + [c for c in new_df.columns if c != 'country_code']
-    new_df = new_df[cols]
 
-    return new_df
+    return new_df[cols]
 
 def reduce_co2_data(df, file_name):
     return df
 
+# update this dict with new functions here
 TRANSFORM_REGISTRY = {
     "clean_columns": clean_columns,
     "clean_country_codes": clean_country_codes,
