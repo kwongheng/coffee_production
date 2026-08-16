@@ -6,40 +6,52 @@ kaggle_sources:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_production.csv'
     transforms:
-      - clean_columns
-      - clean_country_codes
+      - normalize_column_names
+      - normalize_column_dtype
+      - normalize_country_names
       - join_country_codes
     table_name: 'coffee_production'
   coffee_domestic_consumption:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_domestic_consumption.csv'
     transforms:
-      - clean_columns
-      - clean_country_codes
+      - normalize_column_names
+      - normalize_country_names
       - join_country_codes
     table_name: 'coffee_domestic_consumption'
   coffee_export:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_export.csv'
     transforms:
-      - clean_columns
-      - clean_country_codes
+      - normalize_column_names
+      - normalize_country_names
       - join_country_codes
     table_name: 'coffee_export'
   coffee_import:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_import.csv'
     transforms:
-      - clean_columns
-      - clean_country_codes
+      - normalize_column_names
+      - normalize_country_names
+      - normalize_bel_lux_data
       - join_country_codes
     table_name: 'coffee_import'
+  coffee_re_export:
+    dataset_path: 'michals22/coffee-dataset'
+    file_name: 'Coffee_re_export.csv'
+    transforms:
+      - normalize_column_names
+      - normalize_country_names
+      - normalize_bel_lux_data
+      - join_country_codes
+    table_name: 'coffee_re_export'
   coffee_importers_consumption:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_importers_consumption.csv'
     transforms:
-      - clean_columns
-      - clean_country_codes
+      - normalize_column_names
+      - normalize_country_names
+      - normalize_bel_lux_data
       - join_country_codes
     table_name: 'coffee_importers_consumption'
   country_codes:
@@ -53,5 +65,5 @@ url_sources:
     storage_options: {'User-Agent': 'Our World In Data data fetch/1.0'}
     file_name: 'global_co2.csv'
     transforms:
-      - clean_columns
+      - normalize_column_names
     table_name: 'global_co2'
