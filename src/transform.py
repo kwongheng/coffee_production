@@ -2,6 +2,11 @@ import pandas as pd
 from src.paths import RAW_DIR, PROCESSED_DIR
 import re
 
+'''
+Define all transforms to datasets here
+Update TRANSFORM_REGISTRY accordingly
+'''
+
 def normalize_column_names(df: pd.DataFrame, file_name: str) -> pd.DataFrame:
     """
     Strips whitespace, replaces 'YYYY/YY' season patterns with 'YYYY',
@@ -100,6 +105,7 @@ def normalize_bel_lux_data(df, file_name):
     lux_idx = df.index[lux_mask][0]
     bleu_idx = df.index[bleu_mask][0]
 
+    # Get the total sum for each country to create the ratio
     belgium_total = df.loc[belgium_idx, ratio_years].sum()
     lux_total = df.loc[lux_idx, ratio_years].sum()
 
@@ -110,7 +116,7 @@ def normalize_bel_lux_data(df, file_name):
 
     belgium_ratio = belgium_total / denom
 
-    # fill up the missing values here
+    # backfill the missing values here
     for year in missing_years:
         combined_val = df.loc[bleu_idx, year]
         if pd.isna(combined_val):
@@ -130,7 +136,7 @@ def normalize_bel_lux_data(df, file_name):
     return df
 
 
-def join_country_codes(df: pd.DataFrame, file_name: str, raw_dir=RAW_DIR, **kwargs) -> pd.DataFrame:
+def join_country_codes(df: pd.DataFrame, file_name: str, raw_dir=RAW_DIR) -> pd.DataFrame:
     '''
     Joins country codes to coffee data, so the coffee dataset will have country codes
     '''
