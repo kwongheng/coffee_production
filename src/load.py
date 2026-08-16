@@ -37,8 +37,8 @@ def get_engine() -> Engine:
     return create_engine(DATABASE_URL)
 
 
-def load_file_to_postgres(file_name, table_name, engine, processed_dir=PROCESSED_DIR,
-                           if_exists="replace"):
+def load_file_to_postgres(file_name: str, table_name: str, engine: Engine, processed_dir=PROCESSED_DIR,
+                           if_exists: str="replace") -> None:
     """
     Read a processed CSV and load it into a Postgres table.
 
