@@ -7,7 +7,7 @@ kaggle_sources:
     file_name: 'Coffee_production.csv'
     transforms:
       - clean_columns
-      - clean_country_codes
+      - clean_country_names
       - join_country_codes
     table_name: 'coffee_production'
   coffee_domestic_consumption:
@@ -15,7 +15,7 @@ kaggle_sources:
     file_name: 'Coffee_domestic_consumption.csv'
     transforms:
       - clean_columns
-      - clean_country_codes
+      - clean_country_names
       - join_country_codes
     table_name: 'coffee_domestic_consumption'
   coffee_export:
@@ -23,7 +23,7 @@ kaggle_sources:
     file_name: 'Coffee_export.csv'
     transforms:
       - clean_columns
-      - clean_country_codes
+      - clean_country_names
       - join_country_codes
     table_name: 'coffee_export'
   coffee_import:
@@ -31,15 +31,25 @@ kaggle_sources:
     file_name: 'Coffee_import.csv'
     transforms:
       - clean_columns
-      - clean_country_codes
+      - clean_country_names
+      - normalize_bel_lux_data
       - join_country_codes
     table_name: 'coffee_import'
+  coffee_re_export:
+    dataset_path: 'michals22/coffee-dataset'
+    file_name: 'Coffee_re_export.csv'
+    transforms:
+      - clean_columns
+      - clean_country_names
+      - join_country_codes
+    table_name: 'coffee_re_export'
   coffee_importers_consumption:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_importers_consumption.csv'
     transforms:
       - clean_columns
-      - clean_country_codes
+      - clean_country_names
+      - normalize_bel_lux_data
       - join_country_codes
     table_name: 'coffee_importers_consumption'
   country_codes:
