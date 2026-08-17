@@ -14,12 +14,12 @@ Required modules are in requirements.txt
 '''
 
 CONFIG_FILE = "config.yaml"
-def convert_yaml_to_df(yaml_file):
+def convert_yaml_to_df(yaml_file: str):
     '''
     Grabs all sources and convert them to pandas dataframe
     '''
 
-    with open('config.yaml') as f:
+    with open(yaml_file) as f:
         data = yaml.safe_load(f)
 
     rows = []

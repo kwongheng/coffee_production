@@ -4,7 +4,7 @@ import kagglehub
 from kagglehub import KaggleDatasetAdapter
 from src.paths import RAW_DIR
 
-def extract_from_kaggle(kaggle_path, file_name, new_file_name = ''):
+def extract_from_kaggle(kaggle_path: str, file_name: str, new_file_name: str = '') -> None:
 
     # Load data from kaggle
     print(f'extracting from kaggle: {kaggle_path}/{file_name}')
@@ -21,7 +21,7 @@ def extract_from_kaggle(kaggle_path, file_name, new_file_name = ''):
     df.to_csv(RAW_DIR / file_to_save, index=False)
 
 
-def extract_from_url(url, file_name, storage_options):
+def extract_from_url(url: str, file_name: str, storage_options: dict) -> None:
 
     print(f'extracting from url: {url}')
     df = pd.read_csv(url, storage_options=storage_options)
