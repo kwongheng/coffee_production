@@ -4,3 +4,8 @@ sqlalchemy
 pyyaml
 python-dotenv
 kagglehub
+nbformat
+ipywidgets
+plotly
+seaborn
+matplotlib
