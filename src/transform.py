@@ -7,7 +7,7 @@ Define all transforms to datasets here
 Update TRANSFORM_REGISTRY accordingly
 '''
 
-def normalize_column_names(df: pd.DataFrame, file_name: str) -> pd.DataFrame:
+def clean_column_names(df: pd.DataFrame, file_name: str) -> pd.DataFrame:
     """
     Strips whitespace, replaces 'YYYY/YY' season patterns with 'YYYY',
     lowercases, and replaces spaces with underscores.
@@ -28,7 +28,7 @@ def normalize_column_names(df: pd.DataFrame, file_name: str) -> pd.DataFrame:
     return df.rename(columns=clean_header)
 
 
-def normalize_column_dtype(df: pd.DataFrame, file_name: str) -> pd.DataFrame:
+def cast_year_cols_to_int(df: pd.DataFrame, file_name: str) -> pd.DataFrame:
     """
     Cast float to int, so that all volumes are in int
     """
@@ -76,7 +76,7 @@ def normalize_country_names(df, file_name):
     return df
 
 
-def normalize_bel_lux_data(df, file_name):
+def split_bel_lux_historical_data(df, file_name):
     """
     Fills in missing Belgium and Luxembourg coffee consumption values for 1990-1998
     using a constant ratio derived from the 1999-2019 overlap window, splitting the
@@ -137,7 +137,7 @@ def normalize_bel_lux_data(df, file_name):
 
     return df
 
-def fix_negative_values(df, file_name) -> pd.DataFrame:
+def fix_brazil_negative_exports(df, file_name) -> pd.DataFrame:
     """
     This fixes an anarmalie specification in coffee_export where some
     years in Brazil are negative.
@@ -202,11 +202,11 @@ def check_negative_values(df: pd.DataFrame, file_name: str) -> pd.DataFrame:
 
 # update this dict with new functions here
 TRANSFORM_REGISTRY = {
-    "normalize_column_names":normalize_column_names,
-    "normalize_column_dtype": normalize_column_dtype,
+    "clean_column_names": clean_column_names,
+    "cast_year_cols_to_int": cast_year_cols_to_int,
     "normalize_country_names": normalize_country_names,
-    "normalize_bel_lux_data": normalize_bel_lux_data,
-    "fix_negative_values": fix_negative_values,
+    "split_bel_lux_historical_data": split_bel_lux_historical_data,
+    "fix_brazil_negative_exports": fix_brazil_negative_exports,
     "join_country_codes": join_country_codes,
     "check_negative_values": check_negative_values
 }
