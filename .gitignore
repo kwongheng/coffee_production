@@ -1,3 +1,14 @@
+# don't commit unless needed in repo
+*.csv
+
+#keep folders
+data/raw/*
+data/processed/*
+data/archive/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/archive/.gitkeep
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -217,10 +228,3 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-#keep folders
-data/raw/*
-data/processed/*
-data/archive/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!data/archive/.gitkeep
