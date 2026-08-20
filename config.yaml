@@ -10,6 +10,7 @@ kaggle_sources:
       - normalize_column_dtype
       - normalize_country_names
       - join_country_codes
+      - check_negative_values
     table_name: 'coffee_production'
   coffee_domestic_consumption:
     dataset_path: 'michals22/coffee-dataset'
@@ -18,6 +19,7 @@ kaggle_sources:
       - normalize_column_names
       - normalize_country_names
       - join_country_codes
+      - check_negative_values
     table_name: 'coffee_domestic_consumption'
   coffee_export:
     dataset_path: 'michals22/coffee-dataset'
@@ -25,7 +27,9 @@ kaggle_sources:
     transforms:
       - normalize_column_names
       - normalize_country_names
+      - fix_negative_values
       - join_country_codes
+      - check_negative_values
     table_name: 'coffee_export'
   coffee_import:
     dataset_path: 'michals22/coffee-dataset'
@@ -35,6 +39,7 @@ kaggle_sources:
       - normalize_country_names
       - normalize_bel_lux_data
       - join_country_codes
+      - check_negative_values
     table_name: 'coffee_import'
   coffee_re_export:
     dataset_path: 'michals22/coffee-dataset'
@@ -44,6 +49,7 @@ kaggle_sources:
       - normalize_country_names
       - normalize_bel_lux_data
       - join_country_codes
+      - check_negative_values
     table_name: 'coffee_re_export'
   coffee_importers_consumption:
     dataset_path: 'michals22/coffee-dataset'
@@ -53,6 +59,7 @@ kaggle_sources:
       - normalize_country_names
       - normalize_bel_lux_data
       - join_country_codes
+      - check_negative_values
     table_name: 'coffee_importers_consumption'
   country_codes:
     dataset_path: 'juanumusic/countries-iso-codes'
