@@ -4,10 +4,16 @@ JDE10 interim project to analyze coffee production datasets from kaggle
 
 ## Objectives
 We seek to answer the following with the dataset
-- Which countries producings the most coffee arabica/robusta
-- What are the changes in total production volume for each country over they years
-- Is there correlation between total global production and CO2?
-- Which countries are the largest coffee consumer, i.e. imports + domestic
+- Global Supply & Re-Exports
+  - Where does coffee actually come from, and who makes the money?
+- Insights on importer countries
+  - Is the money in drinking coffee or in moving it?
+- Coffee drinkers in Asia?
+  - Which country in Asia drinks more coffee than it can grow?
+- CO2 Impact
+  - Is coffee cooking the planet?
+- Top coffee producers in the world?
+  - Which countries are racing to the top over the years
 
 ## Folder Structure 
 
