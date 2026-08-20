@@ -6,8 +6,8 @@ kaggle_sources:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_production.csv'
     transforms:
-      - normalize_column_names
-      - normalize_column_dtype
+      - clean_column_names
+      - cast_year_cols_to_int
       - normalize_country_names
       - join_country_codes
       - check_negative_values
@@ -16,7 +16,7 @@ kaggle_sources:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_domestic_consumption.csv'
     transforms:
-      - normalize_column_names
+      - clean_column_names
       - normalize_country_names
       - join_country_codes
       - check_negative_values
@@ -25,9 +25,9 @@ kaggle_sources:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_export.csv'
     transforms:
-      - normalize_column_names
+      - clean_column_names
       - normalize_country_names
-      - fix_negative_values
+      - fix_brazil_negative_exports
       - join_country_codes
       - check_negative_values
     table_name: 'coffee_export'
@@ -35,9 +35,9 @@ kaggle_sources:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_import.csv'
     transforms:
-      - normalize_column_names
+      - clean_column_names
       - normalize_country_names
-      - normalize_bel_lux_data
+      - split_bel_lux_historical_data
       - join_country_codes
       - check_negative_values
     table_name: 'coffee_import'
@@ -45,9 +45,9 @@ kaggle_sources:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_re_export.csv'
     transforms:
-      - normalize_column_names
+      - clean_column_names
       - normalize_country_names
-      - normalize_bel_lux_data
+      - split_bel_lux_historical_data
       - join_country_codes
       - check_negative_values
     table_name: 'coffee_re_export'
@@ -55,9 +55,9 @@ kaggle_sources:
     dataset_path: 'michals22/coffee-dataset'
     file_name: 'Coffee_importers_consumption.csv'
     transforms:
-      - normalize_column_names
+      - clean_column_names
       - normalize_country_names
-      - normalize_bel_lux_data
+      - split_bel_lux_historical_data
       - join_country_codes
       - check_negative_values
     table_name: 'coffee_importers_consumption'
@@ -72,5 +72,5 @@ url_sources:
     storage_options: {'User-Agent': 'Our World In Data data fetch/1.0'}
     file_name: 'global_co2.csv'
     transforms:
-      - normalize_column_names
+      - clean_column_names
     table_name: 'global_co2'
