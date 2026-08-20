@@ -98,6 +98,7 @@ def normalize_bel_lux_data(df, file_name):
     lux_mask = df["country"] == "Luxembourg"
     bleu_mask = df["country"] == "Belgium/Luxembourg"
 
+    # Sanity check to ensure data are there
     if not belgium_mask.any() or not lux_mask.any() or not bleu_mask.any():
         raise ValueError("Could not find one or more of the required country rows.")
 
@@ -109,6 +110,7 @@ def normalize_bel_lux_data(df, file_name):
     belgium_total = df.loc[belgium_idx, ratio_years].sum()
     lux_total = df.loc[lux_idx, ratio_years].sum()
 
+    # Sanity check for divide by zero error
     denom = belgium_total + lux_total
     if denom == 0:
         raise ValueError("Cannot compute ratio: Belgium and Luxembourg totals are both zero "
@@ -135,6 +137,26 @@ def normalize_bel_lux_data(df, file_name):
 
     return df
 
+def fix_negative_values(df, file_name) -> pd.DataFrame:
+    """
+    This fixes an anarmalie specification in coffee_export where some
+    years in Brazil are negative.
+    """
+
+    print(f"{file_name}: Fix missing/negative values...")
+
+    brazil_mask = df["country"] == "Brazil"
+    years = ["2014", "2015", "2019"]
+
+    # This is in units of thousand 60kg bags
+    year_values = [37335.1728254, 37562.8467468, 40697.8637087]
+
+    # ensure result is cast to int to keep same type
+    for idx, year in enumerate(years):
+        if df.loc[brazil_mask, year].item() < 0:
+            df.loc[brazil_mask, year] = int(year_values[idx] * 60000)
+
+    return df
 
 def join_country_codes(df: pd.DataFrame, file_name: str, raw_dir=RAW_DIR) -> pd.DataFrame:
     '''
@@ -167,6 +189,16 @@ def join_country_codes(df: pd.DataFrame, file_name: str, raw_dir=RAW_DIR) -> pd.
 
     return new_df[cols]
 
+def check_negative_values(df: pd.DataFrame, file_name: str) -> pd.DataFrame:
+    '''
+    Negative values in trade usually means data error, we need to figure out why
+    and fix those errror
+    '''
+    has_negatives = (df.select_dtypes(include=["number"]) < 0).any().any()
+    if has_negatives:
+        raise ValueError(f"{file_name}: Negative values found in dataset, please check!")
+
+    return df
 
 # update this dict with new functions here
 TRANSFORM_REGISTRY = {
@@ -174,7 +206,9 @@ TRANSFORM_REGISTRY = {
     "normalize_column_dtype": normalize_column_dtype,
     "normalize_country_names": normalize_country_names,
     "normalize_bel_lux_data": normalize_bel_lux_data,
-    "join_country_codes": join_country_codes
+    "fix_negative_values": fix_negative_values,
+    "join_country_codes": join_country_codes,
+    "check_negative_values": check_negative_values
 }
 
 
