@@ -1,3 +1,6 @@
+# ignore PyCharm setttings, to much to handle
+.idea/
+
 # don't commit unless needed in repo
 *.csv
 
